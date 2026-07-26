@@ -1,17 +1,22 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    text-align: center;
-    margin-top: 50px;
-}
-h1 {
-    color: #333;
-}
-input {
-    padding: 10px;
-    width: 250px;
-}
-button {
-    padding: 10px 15 px;
-    cursor: pointer;
-}
+const button =
+document.querySelector("button");
+const input =
+document.querySelector("input");
+const tasklist =
+document.getElementById("tasklist");
+button.addEventListener("click",function() {
+    const task = input.value;
+    const li = document.createElement("li");
+    li.textContent = task;
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    li.addEventListener("click",function(){
+    li.classList.toggle("done");
+    });
+    deleteButton.addEventListener("click", function() {
+        li.remove();
+    }); 
+    li.appendChild(deleteButton);
+    tasklist.appendChild(li);
+    input.value = "";
+});
